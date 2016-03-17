@@ -50,10 +50,8 @@ gulp.task('push', shell.task([
 gulp.task('deploy', function (done) {
   const client = new TinyShipyardClient(options.shipyardUrl, options.shipyardServiceKey);
   const imageName = `${options.registryHost}:${options.registryPort}/${options.serviceName}:${options.versionTag}`;
-  let promise = client.createContainer(imageName);
-  if (options.instances > 1) {
-    promise = promise.then(id => client.scaleContainer(id, options.instances - 1));
-  }
+  let promise = Promise.resolve();
+  for (let i = 0; i < options.instances; i += 1) promise = promise.then(() => client.createContainer(imageName));
   promise.then(() => done(), error => done(error));
 });
 
