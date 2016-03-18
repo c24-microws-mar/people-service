@@ -30,12 +30,8 @@ app.get(SERVICE_ENDPOINTS, endpoints());
 // Add all other service routes
 app.get('/superstars', (req, res) => {
   res.send([
-    'Scarlett Johansson',
-    'Leonardo DiCaprio',
-    'Jennifer Lawrence',
-    'Ashton Kutcher',
-    'Kate Beckinsale',
-    'Robert Downey Jr.'
+    'Person 1',
+    'Person 2'
   ]);
 });
 
